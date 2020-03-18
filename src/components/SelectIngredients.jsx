@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import ShowIngredients from "./ShowIngredients";
-import SelectAlcohol from "./SelectAlcohol";
 import axios from "axios";
 import { Button, Header, Image, Modal } from "semantic-ui-react";
+import DrinkDetails from './DrinkDetails'
 
 class SelectIngredients extends Component {
   state = {
@@ -68,40 +68,8 @@ class SelectIngredients extends Component {
     }
 
     if (cocktailDetails.id > 0) {
-      renderSpecificCocktail = (
-        <div
-          className="card"
-          key={cocktailDetails.id}
-          id="specific-cocktail-container"
-        >
-          <div className="image left">
-            <img
-              className="drinkImage"
-              src={cocktailDetails.image}
-              alt="Cocktail"
-            />
-          </div>
-          <div className="content">
-            <div className="header1">{cocktailDetails.name}</div>
-            <div className="meta">{cocktailDetails.category}</div>
-            <div className="description">
-              Ingredients:
-              {cocktailDetails.ingredients.map(item => {
-                return (
-                  <div key={cocktailDetails.id} id="ingredients-container">
-                    {item.name} {item.measure}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-          <div className="extra content">
-            Instructions: {cocktailDetails.instructions}
-          </div>
-          <div className="extra content">Glass: {cocktailDetails.glass}</div>
-          <SelectAlcohol />
-        </div>
-      );
+      renderSpecificCocktail = 
+       <DrinkDetails cocktail = {cocktailDetails}/>
     }
 
     return (
