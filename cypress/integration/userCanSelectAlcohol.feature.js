@@ -34,11 +34,16 @@ describe("User can search for alcohol", () => {
       .contains("Submit")
       .click();
     cy.get("#cocktail_list").should("contain", "Tom Collins");
-    cy.get("button")
+    cy.get(".card")
       .contains("Tom Collins")
-      .click();
+      .parent()
+      .within(() => {
+        cy.get("button")
+          .contains("View drink details")
+          .click();
+      });
     cy.get("#specific-cocktail-container").within(() => {
-      cy.get(".header").contains("Tom Collins");
+      cy.get(".header1").contains("Tom Collins");
       cy.get(".meta").contains("Ordinary Drink");
       cy.get(".description").contains("Gin 2 oz");
       cy.get(".extra.content").contains(
@@ -51,8 +56,6 @@ describe("User can search for alcohol", () => {
     cy.get("button")
       .contains("Search")
       .click();
-    cy.get("#alcohol_list").within(() => {
-      cy.get("#alcohol-container").should("contain","A-Bay Spirit");
-    });
+    cy.get("#alcohol_list").should("contain", "A-Bay Spirit");
   });
 });
