@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import SelectAlcohol from "./SelectAlcohol";
 import { Header, Image, Modal } from "semantic-ui-react";
 
-const DrinkDetails = props => {
-  let cocktail = props.cocktail;
+const DrinkDetails = (props) => {
+let cocktailInfo = props.cocktail
+  const [cocktail, removeCocktail] = useState([cocktailInfo]);
   return (
-    <Modal open={true} closeIcon>
+    <Modal open={true} onClose={removeCocktail([])}>
       <Modal.Content>
         <Modal.Header>{cocktail.category}</Modal.Header>
         <Modal.Content image>
@@ -13,7 +14,7 @@ const DrinkDetails = props => {
           <Modal.Description>
             <Header>{cocktail.name}</Header>
             Ingredients:
-            {cocktail.ingredients.map(item => {
+            {cocktail.ingredients.map((item) => {
               return (
                 <ul>
                   <li key={cocktail.id} id="ingredients-list">

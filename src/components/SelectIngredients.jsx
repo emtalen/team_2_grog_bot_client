@@ -34,6 +34,12 @@ class SelectIngredients extends Component {
     });
   }
 
+  closeModal = () => {
+    this.setState({
+      selectedCocktail: ''
+    })
+  }
+
   render() {
     let cocktailIndex, renderSpecificCocktail;
     let cocktailDetails = this.state.selectedCocktail;
