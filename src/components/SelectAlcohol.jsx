@@ -29,18 +29,11 @@ class SelectAlcohol extends Component {
             key={alcohol.ProductId}
             id='alcohol-container'
           >
-            <div className='image'>
-              <img
-                className='drinkImage'
-                src={alcohol.Thumbnail.ImageUrl}
-                alt='alcohol selection'
-              />
-            </div>
             <div className='alcohol-content'>
-              <div className='header'>{alcohol.ProductNameBold}</div>
-              <div className='description'>{alcohol.ProductNameThin}</div>
-              <div className='description'>{alcohol.PriceText}</div>
-              <div className='description bottom'>{alcohol.VolumeText}</div>
+              <div>{alcohol.ProductNameBold}</div>
+              <div>{alcohol.ProductNameThin}</div>
+              <div>Price: {alcohol.PriceText}</div>
+              <div>Volume: {alcohol.VolumeText}</div>
             </div>
           </div>
         )
@@ -60,7 +53,7 @@ class SelectAlcohol extends Component {
           <option value='Smaksatt sprit'>Flavoured Liquor</option>
           <option value='Smaksatt vodka'>Flavoured Vodka</option>
         </select>
-        <button onClick={this.onSearchHandler.bind(this)}>Search</button>
+        <button id='search_button'onClick={this.onSearchHandler.bind(this)}>Search</button>
         <div id='alcohol_list' className='ui cards'>{alcoholIndex}</div>
       </>
     )

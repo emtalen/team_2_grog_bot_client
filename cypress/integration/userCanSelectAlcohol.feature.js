@@ -34,25 +34,28 @@ describe("User can search for alcohol", () => {
       .contains("Submit")
       .click();
     cy.get("#cocktail_list").should("contain", "Tom Collins");
-    cy.get("button")
+    cy.get(".card")
       .contains("Tom Collins")
-      .click();
-    cy.get("#specific-cocktail-container").within(() => {
-      cy.get(".header").contains("Tom Collins");
-      cy.get(".meta").contains("Ordinary Drink");
-      cy.get(".description").contains("Gin 2 oz");
-      cy.get(".extra.content").contains(
+      .parent()
+      .within(() => {
+        cy.get("button")
+          .contains("View drink details")
+          .click();
+      });
+    cy.get(".content").within(() => {
+      cy.get("div").contains("Tom Collins");
+      cy.get("div").contains("Ordinary Drink");
+      cy.get("div").contains("Gin 2 oz");
+      cy.get("p").contains(
         "Instructions: In a shaker half-filled with ice cubes, combine the gin, lemon juice, and sugar."
       );
-      cy.get(".extra.content").contains("Glass: Collins glass");
+      cy.get("p").contains("Glass: Collins glass");
     });
 
     cy.get("#alcohol_selector").select("Dark Rum");
     cy.get("button")
       .contains("Search")
       .click();
-    cy.get("#alcohol_list").within(() => {
-      cy.get("#alcohol-container").should("contain","A-Bay Spirit");
-    });
+    cy.get("#alcohol_list").should("contain", "A-Bay Spirit");
   });
 });
